@@ -23,10 +23,26 @@ int main ()
 
   initializeGame(2, k, 3, g1);
   int silverCount = supplyCount(silver, g1);
-  asserttrue(silverCount, 40);
+  if((asserttrue(silverCount, 40) == 0))
+    printf("supplyCount(): PASS. Proper silver count (40). \n");
+  else
+    printf("supplyCount(): FAIL. Improper silver count (%d). \n", silverCount);
   int goldCount = supplyCount(gold, g1);
-  asserttrue(goldCount, 30);
+  if (asserttrue(goldCount, 30) == 0)
+    printf("supplyCount(): PASS. Proper gold count (30). \n");
+  else
+    printf("supplyCount(): FAIL. Improper gold count (%d). \n", goldCount);
   int copperCount = supplyCount(copper, g1);
-  asserttrue(copperCount, 60-(7*2));
+  if (asserttrue(copperCount, 60-(7*2)) == 0)
+    printf("supplyCount(): PASS. Proper copper count (60-(7*playerCount)). \n");
+  else
+    printf("supplyCount(): FAIL. Improper copper count (%d). \n", copperCount);
+  int estates = supplyCount(estate, g1);
+  int duchys = supplyCount(duchy, g1);
+  int provinces = supplyCount(province, g1);
+  if (asserttrue(estates, duchys) == 0 && asserttrue(duchys, provinces) == 0)
+    printf("supplyCount(): PASS. Proper estate, duchy, and province count (8 for 2 player game). \n");
+  else
+    printf("supplyCount(): FAIL. Improper estate, duchy, and province count (%d, %d, and %d). \n", estates, duchys, provinces); 
 
 }
