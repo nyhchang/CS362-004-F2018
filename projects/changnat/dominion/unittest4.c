@@ -13,29 +13,23 @@ int asserttrue(int a, int b)
     return 1;
 }
 
-
 //test whoseTurn()
-int main ()
+int main()
 {
-  struct gameState* g1;
+  struct gameState g1;
   int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-           sea_hag, tribute, smithy};
-  initializeGame(2, k, 3, g1);
+               sea_hag, tribute, smithy};
+  initializeGame(2, k, 3, &g1);
 
-  int currentPlayer = whoseTurn(g1);
-  if(asserttrue(currentPlayer, 0))
-    printf("whoseTurn(): PASS. Player 1 goes first. \n");
+  int currentPlayer = whoseTurn(&g1);
+  if (asserttrue(currentPlayer, g1.whoseTurn) == 0)
+    printf("whoseTurn(): PASS. Function call matches state \n");
   else
-    printf("whoseTurn(): FAIL. Player 1 does not go first. \n");
-  endTurn(g1);
-  int newCurrent = whoseTurn(g1);
-  if(asserttrue(newCurrent, 1));
-    printf("whoseTurn(): PASS. Player 2 goes after player 1. \n");
+    printf("whoseTurn(): FAIL. whoseTurn() = %d, state.whoseTurn = %d. \n", currentPlayer, g1.whoseTurn);
+  endTurn(&g1);
+  int newCurrent = whoseTurn(&g1);
+  if (asserttrue(currentPlayer, g1.whoseTurn) == 1)
+    printf("whoseTurn(): PASS. New player's turn. Correctly follows state \n");
   else
-    printf("whoseTurn(): FAIL. Player 2 does not go after player 1. \n");
-  endTurn(g1);
-  if(asserttrue(currentPlayer, whoseTurn(g1)))
-    printf("whoseTurn(): PASS. Player 1 goes again after Player 2");
-  else
-    printf("whoseTurn():FAIL. Player 1 does not go again after player 2")
+    printf("whoseTurn(): FAIL. Does not follow state.. \n");
 }
