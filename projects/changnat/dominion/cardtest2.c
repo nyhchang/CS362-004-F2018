@@ -32,7 +32,7 @@ int main()
   else
     printf("Smithy Card: FAIL. Added %d cards total to hand \n", (afterCardHand - beforeCardHand));
   if (asserttrue(currentPlayer, whoseTurn(&g1)) == 0)
-    printf("Adventurer Card: PASS. Still the first player's turn. \n");
+    printf("Smithy Card: PASS. Still the first player's turn. \n");
   else
-    printf("Adventurer Card: FAIL. Not the first player's turn. \n");
+    printf("Smithy Card: FAIL. Not the first player's turn. \n");
 }

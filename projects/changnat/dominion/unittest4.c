@@ -28,7 +28,7 @@ int main()
     printf("whoseTurn(): FAIL. whoseTurn() = %d, state.whoseTurn = %d. \n", currentPlayer, g1.whoseTurn);
   endTurn(&g1);
   int newCurrent = whoseTurn(&g1);
-  if (asserttrue(currentPlayer, g1.whoseTurn) == 1)
+  if (asserttrue(currentPlayer, newCurrent) == 1)
     printf("whoseTurn(): PASS. New player's turn. Correctly follows state \n");
   else
     printf("whoseTurn(): FAIL. Does not follow state.. \n");
